@@ -8,8 +8,21 @@
 <body>
     <h1>Points Viewer</h1>
     <div id="points-container">
-        <h2>Austin Point: {{ data.Austin_Point }}</h2>
-        <h2>Rems Points: {{ data.Rems_Points }}</h2>
+        <!-- Points will be displayed here -->
     </div>
+
+    <script>
+        fetch('https://raw.githubusercontent.com/devalfie/robux-bank/main/data.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('points-container').innerHTML = `
+                    <h2>Austin Point: ${data.Austin_Point}</h2>
+                    <h2>Rems Points: ${data.Rems_Points}</h2>
+                `;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
 </body>
 </html>
