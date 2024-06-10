@@ -1,10 +1,13 @@
-function submitPoints() {
-    var austinPoints = document.getElementById("austin-point").value;
-    var remsPoints = document.getElementById("rems-point").value;
-
-    // You can add further validation here if needed
-
-    // Example: You can log the values to the console
-    console.log("Austin Points: " + austinPoints);
-    console.log("Rems Points: " + remsPoints);
-}
+// Fetch the content of data.json from GitHub
+fetch('https://raw.githubusercontent.com/devalfie/robux-bank/main/data.json')
+    .then(response => response.json())
+    .then(data => {
+        // Display the content on the webpage
+        document.getElementById('points-container').innerHTML = `
+            <h2>Austin Point: ${data.Austin_Point}</h2>
+            <h2>Rems Points: ${data.Rems_Points}</h2>
+        `;
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
